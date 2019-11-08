@@ -1,11 +1,14 @@
 # Setup git
 setup_git() {
-    # Configure git user
-    read -p "git email: " email < /dev/tty
-    read -p "git user:  " name < /dev/tty
+    # Check if git user isn't configured. If it's not, read user and e-mail and set it
+    if [ -z "$(git config --global user.name)"  ]; then
+	    # Configure git user
+        read -p "git email: " email < /dev/tty
+        read -p "git user:  " name < /dev/tty
 
-    git config --global user.name "$name"
-    git config --global user.email "$email"
+        git config --global user.name "$name"
+        git config --global user.email "$email"
+    fi    
 
     # Configure git aliases
     git config --global alias.st status
