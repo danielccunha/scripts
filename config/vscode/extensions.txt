@@ -1,0 +1,14 @@
+wakatime.vscode-wakatime
+vscode-icons-team.vscode-icons
+akamud.vscode-theme-onedark
+dart-code.dart-code
+dart-code.flutter
+streetsidesoftware.code-spell-checker
+eamodio.gitlens
+esbenp.prettier-vscode
+formulahendry.auto-close-tag
+ms-azuretools.vscode-docker
+ms-python.python
+redhat.vscode-yaml
+bradgashler.htmltagwrap
+ritwickdey.liveserver
