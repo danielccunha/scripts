@@ -10,6 +10,6 @@ It's just necessary in case you are going to use it. Add your default extensions
 
 Last but not least, in the end of the scripts you'll find a call to a function called **install_packages**. I've already added a couple of packages I use. Fell free to add your own packages.
 
-## Running
+## Installing
 
-After finished settings up, just run the script with **./system.sh** and wait it to finish.
+After finished setting up, just run the script with **./system.sh** and be happy.

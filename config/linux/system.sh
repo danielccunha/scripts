@@ -85,6 +85,10 @@ merge_json_files() {
 
 # Download Brazilian dictionaries for working with JetBrains IDEs
 download_brazilian_dictionaries() {
+    if [ -d $HOME/Dictionaries ]; then
+        return 1
+    fi
+
     git clone https://github.com/danielccunha/IntelliJ.Portuguese.Brazil.Dictionary.git
     cd IntelliJ.Portuguese.Brazil.Dictionary
     rm -rf doc/ README.md && cd ..
@@ -99,27 +103,41 @@ configure_vscode() {
     if yay -Qs visual-studio-code-bin > /dev/null; then
         while IFS= read -r extension; do
             code --install-extension $extension
-        done < ../vscode/extensions.txt
+        done < ../../vscode/extensions.txt
 
         {
             # Configure user settigs
-            merge_json_files $HOME/.config/Code/User/settings.json ../vscode/settings.json
+            merge_json_files $HOME/.config/Code/User/settings.json ../../vscode/settings.json
 
             # Configure keybindings
-            merge_json_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json    
+            merge_json_files $HOME/.config/Code/User/keybindings.json ../../vscode/keybindings.json    
         } || {
             echo 'There was an error setting up Visual Studio Code settings and keybinds';
         }
     fi        
 }
 
+# Set up PostgreSQL
+configure_postgresql() {
+    if yay -Qs postgresql > /dev/null; then
+        echo 'Setting up PostgresSQL...'
+        sudo su - postgres
+        initdb --locale $LANG -D /var/lib/postgres/data
+        exit
+        sudo systemctl start postgresql
+        sudo systemctl status postgresql
+        sudo systemctl enable postgresql
+    fi
+}
+
 {
     install_yay
-    install_git
-    install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq
+    # install_git
+    install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq postgresql pgadmin4
     install_and_configure_flutter
     download_brazilian_dictionaries
     configure_vscode
+    # configure_postgresql
     cleanup
 } || {
     cleanup
