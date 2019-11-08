@@ -1,5 +1,15 @@
 #!/bin/bash
 
+## Creates a temporary folder for created and/or downloaded files
+mkdir temp
+cd temp
+
+# Clean up created and/or downloaded files
+cleanup() {
+  cd ../
+  rm -rf temp
+}
+
 # Install and configure yay
 install_yay() {
     if pacman -Qs yay > /dev/null; then
@@ -73,6 +83,17 @@ merge_json_files() {
     cp temp.json $1 && rm temp.json
 }
 
+# Download Brazilian dictionaries for working with JetBrains IDEs
+download_brazilian_dictionaries() {
+    git clone https://github.com/danielccunha/IntelliJ.Portuguese.Brazil.Dictionary.git
+    cd IntelliJ.Portuguese.Brazil.Dictionary
+    rm -rf doc/ README.md && cd ..
+    mkdir Brazilian\ Dictionaries
+    mv IntelliJ.Portuguese.Brazil.Dictionary/* Brazilian\ Dictionaries/
+    rm -rf IntelliJ.Portuguese.Brazil.Dictionary
+    mv Brazilian\ Dictionaries $HOME
+}
+
 # Install VSCode extensions and set up user settings
 configure_vscode() {
     if yay -Qs visual-studio-code-bin > /dev/null; then
@@ -80,20 +101,26 @@ configure_vscode() {
             code --install-extension $extension
         done < ../vscode/extensions.txt
 
-        # Configure user settigs
-        merge_json_files $HOME/.config/Code/User/settings.json ../vscode/settings.json
+        {
+            # Configure user settigs
+            merge_json_files $HOME/.config/Code/User/settings.json ../vscode/settings.json
 
-        # Configure keybindings
-        merge_json_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json    
+            # Configure keybindings
+            merge_json_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json    
+        } || {
+            echo 'There was an error setting up Visual Studio Code settings and keybinds';
+        }
     fi        
 }
 
-# install_yay
-# install_git
-# install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq
-# install_and_configure_flutter
-configure_vscode
-
-# TODO:
-# Download brazilian dictionaries for Jetbrains
-# Install jetbrains IDEs
+{
+    install_yay
+    install_git
+    install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq
+    install_and_configure_flutter
+    download_brazilian_dictionaries
+    configure_vscode
+    cleanup
+} || {
+    cleanup
+}
