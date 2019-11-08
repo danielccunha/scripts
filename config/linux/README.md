@@ -13,3 +13,10 @@ Last but not least, in the end of the scripts you'll find a call to a function c
 ## Installing
 
 After finished setting up, just run the script with **./system.sh** and be happy.
+
+## To Do
+
+- [ ] Adjust it to work with other distros
+- [ ] Fix Visual Studio Code setting up (mess with keybindings)
+- [ ] Separate packages to another file
+- [ ] Separate configuration (like PostgreSQL, Flutter and VSCode)
