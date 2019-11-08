@@ -92,10 +92,10 @@ download_brazilian_dictionaries() {
     git clone https://github.com/danielccunha/IntelliJ.Portuguese.Brazil.Dictionary.git
     cd IntelliJ.Portuguese.Brazil.Dictionary
     rm -rf doc/ README.md && cd ..
-    mkdir Brazilian\ Dictionaries
-    mv IntelliJ.Portuguese.Brazil.Dictionary/* Brazilian\ Dictionaries/
+    mkdir Dictionaries
+    mv IntelliJ.Portuguese.Brazil.Dictionary/* Dictionaries/
     rm -rf IntelliJ.Portuguese.Brazil.Dictionary
-    mv Brazilian\ Dictionaries $HOME
+    mv Dictionaries $HOME
 }
 
 # Install VSCode extensions and set up user settings
@@ -132,12 +132,12 @@ configure_postgresql() {
 
 {
     install_yay
-    # install_git
+    install_git
     install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq postgresql pgadmin4
     install_and_configure_flutter
     download_brazilian_dictionaries
     configure_vscode
-    # configure_postgresql
+    configure_postgresql
     cleanup
 } || {
     cleanup
