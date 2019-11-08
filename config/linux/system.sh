@@ -1,6 +1,9 @@
 #!/bin/bash
 
-## Creates a temporary folder for created and/or downloaded files
+# Import post installs
+source post_installs.sh
+
+# Creates a temporary folder for created and/or downloaded files
 mkdir temp
 cd temp
 
@@ -20,124 +23,59 @@ install_yay() {
     fi
 }
 
-# Generic function for installing packages
+# Run post install from csv
+run_post_install() {
+    {
+        echo "Running post install for $1"
+        $2
+    } || {
+        echo "There was an error running post install for $1"
+    }
+}
+
+# Install packages from packages.csv
 install_packages() {
-    for package in "$@"
-    do
-        if yay -Qs $package > /dev/null; then
-            echo "$package is already installed"
-        else
-            yay -Sy $package --noconfirm
-        fi
-    done    
-}
-
-# Install and configure git
-install_git() {
-    if yay -Qs git > /dev/null; then
-        echo "git is already installed"
-    else
-        yay -Sy git --noconfirm
-    fi
-
-    # Configure git user
-    read -p "git username: " name
-    read -p "git email: " email
-
-    git config --global user.name "$name"
-    git config --global user.email "$email"
-
-    # Configure git aliases
-    git config --global alias.st status
-    git config --global alias.br branch
-    git config --global alias.unstage 'reset HEAD --'
-    git config --global alias.last 'log -1 HEAD'
-}
-
-# Install and configure flutter
-install_and_configure_flutter() {
-    if yay -Qs flutter > /dev/null; then
-        echo "flutter is already installed"
-    else
-        yay -Sy flutter --noconfirm
-
-        # Configure flutter
-        sudo groupadd flutterusers
-        sudo gpasswd -a $USER flutterusers
-        sudo chown -R :flutterusers /opt/flutter
-        sudo chmod -R g+w /opt/flutter
-        sudo newgrp flutterusers
-    fi
-}
-
-# Merge JSON files
-merge_json_files() {
-    # Ensure destiny file exists
-    touch $1
-
-    # Merge files into a temp file
-    jq -s add $1 $2 > temp.json
-
-    # Remove current file and copy merged content to destiny
-    rm $1
-    cp temp.json $1 && rm temp.json
-}
-
-# Download Brazilian dictionaries for working with JetBrains IDEs
-download_brazilian_dictionaries() {
-    if [ -d $HOME/Dictionaries ]; then
-        return 1
-    fi
-
-    git clone https://github.com/danielccunha/IntelliJ.Portuguese.Brazil.Dictionary.git
-    cd IntelliJ.Portuguese.Brazil.Dictionary
-    rm -rf doc/ README.md && cd ..
-    mkdir Dictionaries
-    mv IntelliJ.Portuguese.Brazil.Dictionary/* Dictionaries/
-    rm -rf IntelliJ.Portuguese.Brazil.Dictionary
-    mv Dictionaries $HOME
-}
-
-# Install VSCode extensions and set up user settings
-configure_vscode() {
-    if yay -Qs visual-studio-code-bin > /dev/null; then
-        while IFS= read -r extension; do
-            code --install-extension $extension
-        done < ../../vscode/extensions.txt
-
+    while IFS=, read -r package post_install force; do
+        # Ignore header
+        if [ "$package" == 'PACKAGE' ]; then
+            continue
+        fi        
+        
         {
-            # Configure user settigs
-            merge_json_files $HOME/.config/Code/User/settings.json ../../vscode/settings.json
+            # Check if package isn't already installed
+            if yay -Qs $package > /dev/null; then
+                echo "$package is already installed"
 
-            # Configure keybindings
-            merge_json_files $HOME/.config/Code/User/keybindings.json ../../vscode/keybindings.json    
+                # Check if it should force post install (case when package comes with the system, like Git)
+                if [ "$force" == '1' ]; then
+                    run_post_install $package $post_install
+                fi
+            else
+                # Install the package
+                yay -Sy $package --noconfirm
+                
+                # Check if post install is empty
+                if [ -z "$post_install" ]; then
+                    continue
+                fi                
+
+                # Run post install for package
+                run_post_install $package $post_install
+            fi
         } || {
-            echo 'There was an error setting up Visual Studio Code settings and keybinds';
+            echo "Failed to install $package"
         }
-    fi        
-}
-
-# Set up PostgreSQL
-configure_postgresql() {
-    if yay -Qs postgresql > /dev/null; then
-        echo 'Setting up PostgresSQL...'
-        sudo su - postgres
-        initdb --locale $LANG -D /var/lib/postgres/data
-        exit
-        sudo systemctl start postgresql
-        sudo systemctl status postgresql
-        sudo systemctl enable postgresql
-    fi
+    done < ../packages.csv
 }
 
 {
+    # Guarantee yay is installed
     install_yay
-    install_git
-    install_packages brave google-chrome visual-studio-code-bin nodejs yarn python dart gitkraken spotify sublime-text-3-imfix discord postman jetbrains-toolbox redshift flameshot dotnet-sdk-bin dotnet-runtime-bin dotnet-host-bin aspnet-runtime aspnet-runtime-bin jq postgresql pgadmin4
-    install_and_configure_flutter
-    download_brazilian_dictionaries
-    configure_vscode
-    configure_postgresql
+
+    # Install packages from packages.csv
+    install_packages
+
+    # Remove downloaded and/or created files
     cleanup
 } || {
     cleanup

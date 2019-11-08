@@ -1,22 +1,26 @@
 # Linux Configuration
 
-Currently I'm a Manjaro user, so this scripts are focused on setting up Manjaro environments. Ideally it should work with any operating system, but for now it's what we got.
+Currently I'm a Manjaro user, so this scripts are focused on setting up Arch-based environments. Ideally, it should work with any operating system, but due to lack of time I can't fix it right know.
 
 ## Setting up
 
-Also in the config folder, there is a **vscode** folder. There you'll find pretty self explanatory files for configuring Visual Studio Code.
+In this folder you'll find two important files, which are **packages.csv** and **post_installs.sh**. The first one is where you're going to specify the packages you need (obviously).
 
-It's just necessary in case you are going to use it. Add your default extensions, keybindings and user settings, and the script will add them automatically to Visual Studio Code.
+Basically, it's a CSV file with three columns which says which **package** it should install, if it has a **post install** script and if it should **force** the post install if package is already installed.
 
-Last but not least, in the end of the scripts you'll find a call to a function called **install_packages**. I've already added a couple of packages I use. Fell free to add your own packages.
+Post installs are scripts you run for setting up your packages like Git, Flutter and many others. You may just write a command or write the function name, which you should write it in the **post_installs.sh** script.
 
-## Installing
+The reason of forcing running post install script is because some packages (like Git) already come with OS. In this case, the package won't be installed, but it will be configured.
 
-After finished setting up, just run the script with **./system.sh** and be happy.
+Last but not least, I've already added some post installs functions I need. One of them is for setting up **Visual Studio Code**. In case you also use vscode, you may put your configuration in the vscode folder.
 
-## To Do
+There you'll find three files which are pretty self-explanatory and have some examples. Just add your settings there and it will be added.
 
-- [ ] Adjust it to work with other distros
-- [ ] Fix Visual Studio Code setting up (mess with keybindings)
-- [ ] Separate packages to another file
-- [ ] Separate configuration (like PostgreSQL, Flutter and VSCode)
+## Running
+
+When you finish setting up the packages, just run it with the following commands:
+
+```
+chmod +x system.sh
+./system.sh
+```

@@ -12,3 +12,5 @@ ms-python.python
 redhat.vscode-yaml
 bradgashler.htmltagwrap
 ritwickdey.liveserver
+grapecity.gc-excelviewer
+mechatroner.rainbow-csv
