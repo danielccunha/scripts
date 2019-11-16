@@ -16,4 +16,4 @@ grapecity.gc-excelviewer
 mechatroner.rainbow-csv
 yzhang.markdown-all-in-one
 ms-vscode.csharp
-
+jchannon.csharpextensions
