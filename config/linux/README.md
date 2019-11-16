@@ -20,7 +20,7 @@ There you'll find three files which are pretty self-explanatory and have some ex
 
 When you finish setting up the packages, just run it with the following commands:
 
-```
+```bash
 chmod +x system.sh
 ./system.sh
 ```

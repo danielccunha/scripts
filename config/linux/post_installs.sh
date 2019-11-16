@@ -8,7 +8,7 @@ setup_git() {
 
         git config --global user.name "$name"
         git config --global user.email "$email"
-    fi    
+    fi
 
     # Configure git aliases
     git config --global alias.st status
@@ -86,5 +86,5 @@ setup_vscode() {
 
     # Merge user settings with current file
     merge_vscode_files $HOME/.config/Code/User/settings.json ../vscode/settings.json
-    merge_vscode_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json   
+    merge_vscode_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json
 }
