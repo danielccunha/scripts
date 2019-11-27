@@ -16,6 +16,7 @@ setup_git() {
     git config --global alias.ck checkout
     git config --global alias.cm 'commit -m'
     git config --global alias.ps push
+    git config --global alias.cf 'config --global --list'
     git config --global alias.ad 'add .'
     git config --global alias.unstage 'reset HEAD --'
     git config --global alias.last 'log -1 HEAD'
