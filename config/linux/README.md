@@ -24,3 +24,7 @@ When you finish setting up the packages, just run it with the following commands
 chmod +x system.sh
 ./system.sh
 ```
+
+## To Do
+
+Currently I'm using a lot Debian-based distros, so it would a good idea to make this algorithm distro-agnostic (at least for Arch and Debian).
