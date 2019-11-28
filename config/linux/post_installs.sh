@@ -39,8 +39,9 @@ setup_jetbrains_toolbox() {
         git clone https://github.com/danielccunha/IntelliJ.Portuguese.Brazil.Dictionary.git
         cd IntelliJ.Portuguese.Brazil.Dictionary
         rm -rf doc/ README.md && cd ..
-        mkdir Dictionaries
-        mv IntelliJ.Portuguese.Brazil.Dictionary/* Dictionaries/
+        mkdir Dictionaries && cd Dictionaries
+        mkdir Portuguese && cd ..
+        mv IntelliJ.Portuguese.Brazil.Dictionary/* Dictionaries/Portuguese/
         rm -rf IntelliJ.Portuguese.Brazil.Dictionary
         mv Dictionaries $HOME
     fi

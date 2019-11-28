@@ -2,7 +2,7 @@ PACKAGE,POST_INSTALL,FORCE
 git,setup_git,1
 brave,,0
 google-chrome,,0
-visual-studio-code-bin,setup_vscode,1
+visual-studio-code-bin,setup_vscode,0
 nodejs,,0
 npm,,0
 yarn,,0
