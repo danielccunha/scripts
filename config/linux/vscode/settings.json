@@ -1,10 +1,19 @@
 {
-  "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Atom One Dark",
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "workbench.iconTheme": "material-icon-theme",
   "vsicons.dontShowNewVersionMessage": true,
   "window.zoomLevel": -1,
-  "dart.lineLength": 120
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "Dracula",
+  "workbench.colorCustomizations": {},
+  "dart.lineLength": 120,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "explorer.confirmDelete": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.tabSize": 2
+  }
 }

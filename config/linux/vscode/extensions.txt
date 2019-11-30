@@ -1,6 +1,4 @@
 wakatime.vscode-wakatime
-vscode-icons-team.vscode-icons
-akamud.vscode-theme-onedark
 dart-code.dart-code
 dart-code.flutter
 streetsidesoftware.code-spell-checker
@@ -15,5 +13,8 @@ ritwickdey.liveserver
 grapecity.gc-excelviewer
 mechatroner.rainbow-csv
 yzhang.markdown-all-in-one
-ms-vscode.csharp
-jchannon.csharpextensions
+mgmcdermott.vscode-language-babel
+dracula-theme.theme-dracula
+dsznajder.es7-react-js-snippets
+dbaeumer.vscode-eslint
+pkief.material-icon-theme
