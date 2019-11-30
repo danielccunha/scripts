@@ -30,12 +30,8 @@ log_yellow() {
 
 # Install and configure yay
 install_yay() {
-    if pacman -Qs yay > /dev/null; then
-        echo 'yay is already installed'
-    else
-        pacman -S yay
-        yay -Syyu
-    fi
+    sudo pacman -Syyu
+    sudo pacman -S yay
 }
 
 # Run post install from csv
