@@ -84,10 +84,56 @@ setup_vscode() {
         code --install-extension $extension
     done < ../vscode/extensions.txt
 
-    # Install strip-json-comments-cli for removing comments
-    sudo npm install --global strip-json-comments-cli
-
     # Merge user settings with current file
     merge_vscode_files $HOME/.config/Code/User/settings.json ../vscode/settings.json
     merge_vscode_files $HOME/.config/Code/User/keybindings.json ../vscode/keybindings.json
+}
+
+# Setup NPM
+setup_npm() {
+    # Install default packages
+    sudo npm install -g nodemon
+    sudo npm install -g expo-cli
+    sudo npm install -g strip-json-comments-cli
+}
+
+# Setup ZSH
+setup_zsh() {
+    # New user settings
+    zsh /usr/share/zsh/unctions/Newuser/zsh-newuser-install -f
+
+    # Install oh my zsh
+    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    
+    # Makes ZSH default shell
+    sudo chsh -s $(which zsh)
+
+    # Spaceship theme
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+    # Spaceship settings
+    echo -e "\nSPACESHIP_PROMPT_ORDER=(
+    user          # Username section
+    dir           # Current directory section
+    host          # Hostname section
+    git           # Git section (git_branch + git_status)
+    hg            # Mercurial section (hg_branch  + hg_status)
+    exec_time     # Execution time
+    line_sep      # Line break
+    vi_mode       # Vi-mode indicator
+    jobs          # Background jobs indicator
+    exit_code     # Exit code section
+    char          # Prompt character
+)
+SPACESHIP_USER_SHOW=always
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_CHAR_SYMBOL=\"❯\"
+SPACESHIP_CHAR_SUFFIX=\" \"" >> $HOME/.zshrc
+
+    # Plugins
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+    zplugin light zdharma/fast-syntax-highlighting
+    zplugin light zsh-users/zsh-autosuggestions
+    zplugin light zsh-users/zsh-completions
 }

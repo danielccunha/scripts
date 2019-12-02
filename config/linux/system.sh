@@ -30,6 +30,7 @@ log_yellow() {
 
 # Install and configure yay
 install_yay() {
+    log_green 'Updating packages and installing yay'
     sudo pacman -Syyu
     sudo pacman -S yay
 }

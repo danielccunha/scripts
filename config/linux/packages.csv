@@ -3,7 +3,7 @@ git,setup_git,1
 brave,,0
 google-chrome,,0
 nodejs,,0
-npm,,0
+npm,setup_npm,0
 yarn,,0
 jq,,0
 python,,0
@@ -11,10 +11,9 @@ dart,,0
 gitkraken,,0
 spotify,,0
 sublime-text-3-imfix,,0
-visual-studio-code-bin,setup_vscode,1
+visual-studio-code-bin,setup_vscode,0
 insomnia,,0
 discord,,0
-postman,,0
 redshift,,0
 flameshot,,0
 dotnet-sdk-bin,,0
@@ -25,3 +24,6 @@ jetbrains-toolbox,setup_jetbrains_toolbox,1
 postgresql,,0
 pgadmin4,,0
 flutter,,0
+mongodb-compass,,0
+otf-fira-code,,0
+zsh,setup_zsh,1
