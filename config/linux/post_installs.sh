@@ -94,6 +94,7 @@ setup_npm() {
     # Install default packages
     sudo npm install -g nodemon
     sudo npm install -g expo-cli
+    sudo npm install -g create-react-app
     sudo npm install -g strip-json-comments-cli
 }
 
