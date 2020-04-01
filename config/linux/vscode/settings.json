@@ -1,8 +1,6 @@
 {
-  "workbench.colorTheme": "Atom One Dark",
-  "workbench.startupEditor": "welcomePage",
+  "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
-  "vsicons.dontShowNewVersionMessage": true,
   "window.zoomLevel": -1,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -17,8 +15,28 @@
   "[javascript]": {
     "editor.tabSize": 2
   },
+  "[dart]": {
+    "editor.defaultFormatter": null
+  },
+  "[json]": {
+    "editor.defaultFormatter": null
+  },
   "cSpell.language": "en,pt,pt_BR",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.fontFamily": "'Fira Code'",
-  "todo-tree.highlights.enabled": true
+  "todo-tree.highlights.enabled": false,
+  "cSpell.userWords": [
+    "Manjaro",
+    "Omni",
+    "aspnet",
+    "browserslist",
+    "knexfile",
+    "noreferrer",
+    "paramiko",
+    "postgresql"
+  ],
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.colorTheme": "Palenight Theme",
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true
 }
