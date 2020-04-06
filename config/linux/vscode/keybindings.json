@@ -7,5 +7,9 @@
     "key": "alt+enter",
     "command": "editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+1",
+    "command": "workbench.debug.action.toggleRepl"
   }
 ]

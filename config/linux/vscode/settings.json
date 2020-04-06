@@ -1,20 +1,15 @@
 {
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "material-icon-theme",
-  "window.zoomLevel": -1,
-  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "workbench.colorCustomizations": {},
-  "dart.lineLength": 120,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Palenight Theme",
+  "editor.tabSize": 2,
+  "window.zoomLevel": -0.75,
+  "dart.lineLength": 100,
   "git.confirmSync": false,
-  "git.autofetch": true,
   "git.enableSmartCommit": true,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "explorer.confirmDelete": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.tabSize": 2
-  },
   "[dart]": {
     "editor.defaultFormatter": null
   },
@@ -23,20 +18,26 @@
   },
   "cSpell.language": "en,pt,pt_BR",
   "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.fontFamily": "'Fira Code'",
+  "terminal.integrated.fontFamily": "Fira Code",
   "todo-tree.highlights.enabled": false,
   "cSpell.userWords": [
     "Manjaro",
     "Omni",
     "aspnet",
+    "bootbox",
+    "bootswatch",
     "browserslist",
     "knexfile",
     "noreferrer",
     "paramiko",
-    "postgresql"
+    "postgresql",
+    "socketio",
+    "usuario"
   ],
-  "liveServer.settings.donotShowInfoMsg": true,
-  "workbench.colorTheme": "Palenight Theme",
-  "eslint.alwaysShowStatus": true,
-  "eslint.format.enable": true
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }
