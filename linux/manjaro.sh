@@ -16,10 +16,8 @@ cleanup() {
 
 # Install packages from Gist downloaded file
 install_packages() {
-  log_yellow '\nInstalling packages from Gist downloaded file'
-
   while IFS=, read -r package; do
-    log_green "\nInstalling $package"
+    log_yellow "\nInstalling $package"
     yay -Sy $package --noconfirm
   done < packages.txt
 }
@@ -35,9 +33,13 @@ install_packages() {
   yay -S git
   setup_git
 
-  log_green '\nDownloading packages to install from Gist'
+  log_green '\nInstalling packages from gist'
   curl https://gist.githubusercontent.com/danielccunha/f82506bb392503889d282442804483ba/raw/df55b0c5cecc5e18d437490354885595674bee54/manjaro-packages --output packages.txt
   install_packages
+
+  log_green '\nSetting up installed packages'
+  setup_jetbrains_toolbox
+  setup_code  
 
   cleanup
 } || {

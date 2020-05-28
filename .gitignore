@@ -343,3 +343,4 @@ ASALocalRun/
 
 # Project
 settings.json
+**/temp
