@@ -37,9 +37,14 @@ install_packages() {
   curl https://gist.githubusercontent.com/danielccunha/f82506bb392503889d282442804483ba/raw/df55b0c5cecc5e18d437490354885595674bee54/manjaro-packages --output packages.txt
   install_packages
 
+  log_green '\nCreating default directories'
+  mkdir ~/Projects ~/Studies
+
   log_green '\nSetting up installed packages'
   setup_jetbrains_toolbox
-  setup_code  
+  setup_code
+  setup_docker
+  setup_zsh
 
   cleanup
 } || {

@@ -56,6 +56,8 @@ setup_code() {
 }
 
 setup_zsh() {
+    log_yellow '\nSetting up ZSH'
+
     # New user settings
     zsh /usr/share/zsh/unctions/Newuser/zsh-newuser-install -f
 
@@ -68,4 +70,11 @@ setup_zsh() {
     # Spaceship theme
     git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
     ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+}
+
+setup_docker() {
+    log_yellow 'Pulling common docker images'
+    docker image pull node:12-alpine
+    docker image pull mongo
+    docker image pull postgres
 }
