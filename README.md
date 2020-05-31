@@ -8,7 +8,7 @@
   </p>
 </div>
 
-This project is basically a small collection of scripts which I frequently use. I developed them using [Manjaro](https://manjaro.org/) (Arch linux), so its possible that some scripts, like the linux configuration (obviously) won't work in other distros.
+This project is basically a small collection of scripts which I frequently use. I developed them using [Manjaro](https://manjaro.org/) (Arch-based distro), so its possible that some scripts, like the linux configuration won't work in other distros (obviously).
 
 ## Installation
 
