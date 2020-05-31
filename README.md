@@ -1,6 +1,18 @@
-# Scripts
+<div align="center">
+  <h1>
+    :computer: <i>scripts</i>
+  </h1>
 
-> My small but growing collection of scripts.
+  <p>
+    My small but growing collection of scripts
+  </p>
+</div>
+
+This project is basically a small collection of scripts which I frequently use. I developed them using [Manjaro](https://manjaro.org/) (Arch linux), so its possible that some scripts, like the linux configuration (obviously) won't work in other distros.
+
+## Installation
+
+Just clone it and be happy.
 
 ## To Do
 
@@ -8,7 +20,3 @@
 - [ ] Add script to create MongoDB container
 - [ ] Add script to create Postgres container
 - [ ] Implement Linux installation script for Debian-based distros
-
-## Installation
-
-Just clone it and be happy.
