@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    :computer: <i>scripts</i>
+    <i>scripts</i>
   </h1>
 
   <p>
@@ -8,13 +8,15 @@
   </p>
 </div>
 
+## :computer: Project
+
 This project is basically a small collection of scripts which I frequently use. I developed them using [Manjaro](https://manjaro.org/) (Arch-based distro), so its possible that some scripts, like the linux configuration won't work in other distros (obviously).
 
-## Installation
+## :fire: Usage
 
 Just clone it and be happy.
 
-## To Do
+## :heavy_check_mark: To Do
 
 - [ ] Add script to download and setup Flutter
 - [ ] Add script to create MongoDB container
