@@ -42,7 +42,6 @@ install_packages() {
 
   log_green '\nSetting up installed packages'
   setup_jetbrains_toolbox
-  setup_code
   setup_docker
   setup_zsh
 
