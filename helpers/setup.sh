@@ -13,12 +13,12 @@ setup_git() {
     git config --global alias.st status
     git config --global alias.br branch
     git config --global alias.ck checkout
-    git config --global alias.cm 'commit -m'
+    git config --global alias.cm '!git add . && git commit -m'
     git config --global alias.ps push
     git config --global alias.cf 'config --global --list'
     git config --global alias.ad 'add .'
-    git config --global alias.unstage 'reset HEAD --'
-    git config --global alias.last 'log -1 HEAD'
+    git config --global alias.un 'reset HEAD --'
+    git config --global alias.lo 'log --oneline'
 }
 
 setup_jetbrains_toolbox() {
@@ -33,26 +33,6 @@ setup_jetbrains_toolbox() {
         rm -rf IntelliJ.Portuguese.Brazil.Dictionary
         mv Dictionaries $HOME
     fi
-}
-
-setup_code() {
-    log_yellow '\nDownload VSCode files from gist'
-    curl https://gist.githubusercontent.com/danielccunha/b58b4d6b6ead4458e494565c1d18e685/raw/e2ee8e151f7515a3eafb07899f5717fb9c64575b/extensions.txt --output extensions.txt
-    curl https://gist.githubusercontent.com/danielccunha/b58b4d6b6ead4458e494565c1d18e685/raw/e2ee8e151f7515a3eafb07899f5717fb9c64575b/keybindings.json --output keybindings.json
-    curl https://gist.githubusercontent.com/danielccunha/b58b4d6b6ead4458e494565c1d18e685/raw/e2ee8e151f7515a3eafb07899f5717fb9c64575b/settings.json --output settings.json
-
-    # Get VSCode config directory
-    readonly VSCODE_CONFIG=~/.config/Code/User
-    echo $VSCODE_CONFIG
-    
-    log_yellow '\nSetting up VSCode settings and keybindings'
-    cp settings.json $VSCODE_CONFIG 
-    cp keybindings.json $VSCODE_CONFIG
-
-    log_yellow '\nInstalling VSCode extensions'
-    while read extension; do
-	    code --install-extension $extension
-    done < extensions.txt
 }
 
 setup_zsh() {
@@ -74,7 +54,7 @@ setup_zsh() {
 
 setup_docker() {
     log_yellow 'Pulling common docker images'
-    docker image pull node:12-alpine
+    docker image pull node:14-alpine
     docker image pull mongo
     docker image pull postgres
 }
